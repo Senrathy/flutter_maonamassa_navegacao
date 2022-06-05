@@ -11,11 +11,25 @@ class HomePage extends StatelessWidget {
         title: const Text('Home Page'),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('/detalhe', arguments: 'Parametro X');
-          },
-          child: Text('Ir para Detalhes'),
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed('/detalhe', arguments: 'Parametro X');
+              },
+              child: const Text('Ir para Detalhes'),
+            ),
+            TextButton(
+              onPressed: () async {
+                print('Antes de entrar na página Detalhes 2');
+                final retorno = await Navigator.of(context).pushNamed<String>('/detalhe2');
+                print('Navegou para a página Detalhes 2');
+                print('O retorno de detalhe 2 é $retorno');
+              },
+              child: const Text('Ir para Detalhes2 e aguardar'),
+            ),
+          ],
         ),
       ),
     );

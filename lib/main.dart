@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_maonamassa_navegacao/pages/core/navigator_observer_custom.dart';
+import 'package:flutter_maonamassa_navegacao/pages/detalhe2_page.dart';
 import 'package:flutter_maonamassa_navegacao/pages/detalhe_page.dart';
 import 'package:flutter_maonamassa_navegacao/pages/home_page.dart';
 
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [
         NavigatorObserverCustom(),
       ],
-      // routes: {
-      //   '/' : (_) => HomePage(),
-      //   '/detalhe' : (_) => DetalhePage(),
-      // },
+      routes: {
+        '/': (_) => const HomePage(),
+        '/detalhe2': (_) => const Detalhe2Page(),
+      },
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name == '/') {
           return MaterialPageRoute(
@@ -36,6 +37,12 @@ class MyApp extends StatelessWidget {
               builder: (context) => DetalhePage(
                     parametro: parametro ?? 'Não tem parâmetro',
                   ));
+        }
+        if (settings.name == '/detalhe2') {
+          return MaterialPageRoute<String>(
+            settings: settings,
+            builder: (context) => const Detalhe2Page(),
+          );
         }
       },
     );
